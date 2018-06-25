@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Albumz</title>
+	<link rel="stylesheet" type="text/css" href="https://bootswatch.com/4/slate/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="/css/style.css">
+</head>
+<body>
+	 <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+      <a class="navbar-brand" href="/">Albumz</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse justify-content-end container" id="navbarsExampleDefault">
+        <ul class="navbar-nav navbar-right">
+          <% if(authdata==null){ %>
+          <li class="nav-item">
+            <a class="nav-link" href="/users/register">Register</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/users/login">Login</a>
+          </li>
+          <% } else{ %>
+           <li class="nav-item">
+            <a class="nav-link" href="/users/logout">Logout</a>
+          </li>
+          <% } %>
+        </ul>
+      </div>
+    </nav>
+<div class="container">
+  <% if(authdata==null){ %>
+ <div class="row"></div>
+ <div class="col-md-12 banner"></div>
+  <% if(page=='/'){ %>
+  <a href="/users/login" ><img src="/images/banner.jpg"  class="centre" ></a>
+  <% } %>
+    <% }else{ %>
+    <div class="container">
+	<div class="row">
+		<div class="col-md-3">
+      <% if(authdata!=null){ %>
+        <p class="well">Welcome,<STRONG><%= user.first_name %> <%= user.last_name %></STRONG></p>
+      <% } %>
+			<ul class="list-group">
+				<li class="list-group-item"><a href="/albums">View Albumz</a>
+				</li>
+				<li class="list-group-item"><a href="/genres">View Genres</a>
+				</li>
+			</ul>
+		</div>
+		<div class="col-md-9">
+      <% if(success_msg != false){ %>
+      <div class="alert alert-success">
+        <%= success_msg %>
+      </div>
+      <% } %>
+      <% if(error_msg != false){ %>
+        <div class="alert alert-danger">
+          <%= error_msg %>
+      </div>
+        <% } %>
+        <% } %>
+
+
