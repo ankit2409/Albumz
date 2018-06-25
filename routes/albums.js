@@ -121,7 +121,7 @@ router.get('/edit/:id',function(req,res,next){
 	var id=req.params.id;
 	var albumRef=fbref.child('/albums/'+id);
 	var genreRef = fbref.child('genres');
-	albumRef.once('value',function(snapshot){
+	genreRef.once('value',function(snapshot){
 		var genres=[];
 		snapshot.forEach(function(childSnapshot){
 			var key = childSnapshot.key;
